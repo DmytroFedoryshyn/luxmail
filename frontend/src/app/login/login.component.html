@@ -1,0 +1,14 @@
+<link href="login.component.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel = "stylesheet"/>
+<form class = "login-form">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" required #us>
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" required #ps>
+  </div>
+  <div><button class = "btn btn-success" type = "button" (click)="login(us.value, ps.value)">Login</button></div>
+  <div id = "message">{{message}}</div>
+</form>

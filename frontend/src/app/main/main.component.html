@@ -1,0 +1,69 @@
+<html>
+    <head></head>
+ <body>
+    <header>
+        <img src = "../../assets/images/mail_logo.png" class = "logo" alt="logo">
+        <div class="name-div">Luxmail</div>
+        <input type="text" placeholder="Search..." class = "search-input" #inputSearch>
+      <button class = "clear-button" (click)="clear()">X</button>
+        <button class="search-button" type="button" (click)="search(inputSearch.value)">
+            Search
+          <i class="fas fa-search"></i>
+        </button>
+        <div class = "settings-div">
+            <button class = "settings-button" (click)="goToProfile()">Profile</button>
+            
+          <button class = "sign-out-button" (click)="signOut()">Sign Out</button>
+        </div>
+    </header>
+<div class = "button-div">
+    <button class = "write-button" (click)="write()">
+        <i class="fas fa-pencil-alt"></i> Write
+</button>
+<button class="cross-button" (click)="deleteSelected()">
+    <i class="fas fa-times"></i>
+    Delete selected
+  </button>
+</div>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>User</th>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let obj of list">
+        <tr (click)="onRowClick(obj)">
+          <td><input type="checkbox" [(ngModel)]="obj.selected"></td>
+          <td>
+            <div > <!-- Add the click event handler here -->
+              <img class="arrowImg" *ngIf="obj.isIncoming; else greenImage" src="../../assets/images/green.png" alt="Red Image">
+              <ng-template #greenImage>
+                <img class="arrowImg" src="../../assets/images/red.png" alt="Green Image">
+              </ng-template>
+            </div>
+          </td>
+          <td *ngIf="!obj.isIncoming">
+            <ng-container *ngFor="let recipient of obj.recipients">
+              {{ recipient.firstName + " " + recipient.lastName }}<br>
+            </ng-container>
+          </td>
+          <td *ngIf="obj.isIncoming">{{ obj.sender.firstName + " " + obj.sender.lastName }}</td>
+          <td>{{ obj.title }}</td>
+          <td>{{ obj.date }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+    
+    
+  </table>
+  
+</div>
+</body>
+</html>
+
