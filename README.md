@@ -19,10 +19,8 @@ The project consists of multiple packages:
 <li><i>dto</i> - contains data transfer objects (DTO's) used for exchanging information
 with the client</li>
 <li><i>exception</i> - contains all of the custom exceptions</li>
-<li><i>lib</i> - contains custom validation annotations</li>
 <li><i>model</i> - contains all classes of the model layer.</li>
 <li><i>service</i> - contains all classes of the service layer.</li>
-<li><i>util</i> - contains all utility classes for simplifying some tasks.</li>
 </ul>
 <h3>Used technologies</h3>
 <ul>
@@ -37,6 +35,71 @@ with the client</li>
     <li>Jackson</li>
     <li>Maven</li>
 </ul>
+<h3>Web API description</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Endpoint link</th>
+            <th>HTTP method</th>
+            <th>Request body</th>
+            <th>Output data</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>/api/users</td>
+            <td>GET</td>
+            <td>No request body</td>
+            <td>List of UserResponseDto</td>
+        </tr>
+        <tr>
+            <td>/api/mails</td>
+            <td>GET</td>
+            <td>No request body</td>
+            <td>List of MailResponseDto</td>
+        </tr>
+        <tr>
+            <td>/api/mails/{searchString}</td>
+            <td>POST</td>
+            <td>{"searchString": "string"}</td>
+            <td>List of MailResponseDto</td>
+        </tr>
+        <tr>
+            <td>/api/mail/{mail_id}</td>
+            <td>DELETE</td>
+            <td>No request body</td>
+            <td>No output data</td>
+        </tr>
+        <tr>
+            <td>/api/mail</td>
+            <td>POST</td>
+            <td>MailRequestDto</td>
+            <td>No output data</td>
+        </tr>
+        <tr>
+            <td>/api/mail/{mail_id}</td>
+            <td>POST</td>
+            <td>MailRequestDto</td>
+            <td>No output data</td>
+        </tr>
+    </tbody>
+</table>
+<h3>List of registered users</h3>
+<table>
+    <th>Login</th>
+    <th>Name and surname</th>
+    <th>Password</th>
+    <tr>
+        <td>js</td>
+        <td>John Smith</td>
+        <td>1</td>
+    </tr>
+     <tr>
+        <td>jd</td>
+        <td>John Doe</td>
+        <td>1</td>
+    </tr>
+</table>
 <h3>How to install and use the project</h3>
 <ol>
 <li>Firstly, run <code>mvn clean package</code>. It should generate an executable JAR file.
