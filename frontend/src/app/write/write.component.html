@@ -1,0 +1,28 @@
+<html>
+    <head></head>
+ <body>
+    <header>
+        <img src = "../../assets/images/mail_logo.png" class = "logo" alt="logo">
+        <div class="name-div">Luxmail</div>
+        <input type="text" placeholder="Search..." class = "search-input" #inputSearch>
+      <button class = "clear-button">X</button>
+        <button class="search-button" type="button">
+            Search
+          <i class="fas fa-search"></i>
+        </button>
+        <div class = "settings-div">
+            <div><button class = "settings-button">Settings</button></div>
+            
+          <div><button class = "sign-out-button" (click)="signOut()">Sign Out</button></div>
+        </div>
+    </header>
+<div class = "main-div">
+    <div><label>New Mail</label></div>
+   <div class = "recipient-div"><label>Recipient:</label> <input class = "recipient-input" type="text" #res></div>
+   <div  class = "title-div"><label>Title:</label> <input class = "title-input" type="text" #title></div>
+   <div><input type="text" class = "email-text" #text></div>
+   <div class = "button-div"><button class = "send-button" (click)="send(res.value, title.value, text.value)">Send</button><button class = "cancel-button" (click)="cancel()">Cancel</button></div>
+</div>
+</body>
+</html>
+

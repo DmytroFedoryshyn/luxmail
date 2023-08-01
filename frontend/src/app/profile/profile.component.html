@@ -1,0 +1,29 @@
+<html>
+    <head></head>
+ <body>
+    <header>
+        <img src = "../../assets/images/mail_logo.png" class = "logo" alt="logo">
+        <div class="name-div">Luxmail</div>
+        <input type="text" placeholder="Search..." class = "search-input" #inputSearch>
+      <button class = "clear-button">X</button>
+        <button class="search-button" type="button">
+            Search
+          <i class="fas fa-search"></i>
+        </button>
+        <div class = "settings-div">
+            <div><button class = "settings-button">Settings</button></div>
+            
+          <div><button class = "sign-out-button" (click)="signOut()">Sign Out</button></div>
+        </div>
+    </header>
+<div class = "main-div">
+    <div class = 'main-label-div'><label >Account settings: {{name}}</label></div>
+    <div class = 'fn-label-div'><label class = 'fn-label'>First name:</label><input #fn type = "text" class = 'fn-text'></div>
+    <div class = 'ln-label-div'><label class = 'ln-label'>Last name:</label><input #ln type = "text" class = 'ln-text'></div>
+    <div class = 'checkbox-div' >  <input type="checkbox" id="apiCheckbox" #checkbox>
+    <label for="apiCheckbox" >Allow API interaction</label></div>
+    <div class = 'button-div'><button class = 'save-button' (click)="save()">Save</button><button class = 'close-button' (click)="close()">Close</button></div>
+</div>
+</body>
+</html>
+

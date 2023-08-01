@@ -1,0 +1,144 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.name-div {
+    color: #0aa2fa;
+    margin-left: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.search-input{
+    height: 40px;
+    width: 300px;
+    margin-left: 20px;
+}
+
+.search-button {
+    margin-left: 30px;
+    height: 45px;
+    width: 120px;
+}
+
+.write-button {
+    color: white;
+    background-color: green;
+    height: 35px;
+    width: 150px;
+}
+
+.cross-button {
+    color: white;
+    background-color: #fc3e28;
+    height: 35px;
+    width: 150px;
+
+    margin-left: 30px;
+}
+
+header {
+    margin-left: 20px;
+}
+
+.button-div {
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+table {
+    width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+
+  table th {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+ table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+.arrowImg {
+    height: 30px;
+    width: 30px;
+}
+
+.clear-button {
+    margin-left: 17px;
+    background-color: lightsalmon;
+}
+
+.settings-div {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-button {
+    
+}
+
+.sign-out-button {
+    margin-top: 10px;
+
+}
+
+.main-div {
+    background-color: #ccc;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 35px;
+    padding-bottom: 15px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.mail-text {
+    height: 100px;
+    width: 95%;
+   
+}
+
+.button-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+   
+}
+
+.close-button {
+    margin-right: 30px;
+}
+
+.title-div {
+    margin-bottom: 20px;
+}
+
+.from-to-div {
+    margin-bottom: 5px;
+}
+
+.text-div {
+    margin-left: 30px;
+}
+

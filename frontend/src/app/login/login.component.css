@@ -1,0 +1,24 @@
+/* login.component.css */
+
+label {
+  margin-right: 20px;
+}
+
+.login-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    height: 100vh; /* Adjust the height as needed, this will center the form on the whole viewport height */
+}
+  
+  /* Optional styling for the form fields and button */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  #message {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
