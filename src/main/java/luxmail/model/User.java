@@ -1,25 +1,23 @@
 package luxmail.model;
 
+import lombok.NonNull;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class User {
+    @NonNull
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String role;
-
-    public User() {
-
-    }
-
-    public User(Long id) {
-        this.id = id;
-    }
 
     @Override
     public boolean equals(Object obj) {

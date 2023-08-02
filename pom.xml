@@ -63,6 +63,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>luxmail</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -14,7 +14,5 @@ public interface MailService {
 
     void sendMail(Mail mail);
 
-    void replyToMail(Mail mail, Long mailId);
-
     Mail getById(Long id);
 }

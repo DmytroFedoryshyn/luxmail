@@ -1,6 +1,8 @@
 package luxmail.controller;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 import luxmail.dto.UserRequestDto;
 import luxmail.dto.UserResponseDto;
 import luxmail.dto.mapper.impl.UserMapper;
@@ -39,5 +41,10 @@ public class UserController {
         User user = userMapper.fromDto(dto);
         user.setId(id);
         return userMapper.toDto(userService.update(user));
+    }
+
+    @GetMapping("/api/users")
+    public List<UserResponseDto> getAllUsers() {
+        return userService.getAll().stream().map(userMapper::toDto).collect(Collectors.toList());
     }
 }

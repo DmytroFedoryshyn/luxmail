@@ -4,7 +4,7 @@ It allows users to perform a set of operations with mails, such as:
 <ul>
 <li>Logging in as a user</li>
 <li>Write a new mail</li>
-<li>View all incoming and sent mails</li>
+<li>View all incoming mails and send new mails</li>
 <li>Delete a mail</li>
 <li>Reply to a mail</li>
 <li>Filter mails by title and content</li>
@@ -90,20 +90,43 @@ with the client</li>
     <th>Name and surname</th>
     <th>Password</th>
     <tr>
-        <td>js</td>
+        <td>john_smith</td>
         <td>John Smith</td>
         <td>1</td>
     </tr>
      <tr>
-        <td>jd</td>
+        <td>john_doe</td>
         <td>John Doe</td>
+        <td>1</td>
+    </tr>
+ <tr>
+        <td>jane_doe</td>
+        <td>Jane Doe</td>
         <td>1</td>
     </tr>
 </table>
 <h3>How to install and use the project</h3>
+<h4>To run backend part:</h4>
 <ol>
-<li>Firstly, run <code>mvn clean package</code>. It should generate an executable JAR file.
-<li>Then run java -jar project.jar</li>
+<li>Firstly, run <code>mvn clean package</code> It should generate an executable JAR file.</li>
+<li>Then use the following commands:
+<ul>
+<li>cd target</li>
+<li>java -jar luxmail.jar</li>
+</ul>
+</li>
 </ol>
+
+<h4>To run frontend part:</h4>
+
+<ol>
+<li>Open new terminal instance.</li>
+<li>Then use the following command:
+<ul><li>ng serve</li></ul>
+</li>
+<li>Open the browser at <code>localhost:4200/login</code></li>
+</ol>
+
+
 
     

@@ -35,7 +35,7 @@ public class MailDaoImpl implements MailDao {
 
     @Override
     public List<Mail> getMails(User user) {
-        String sql = "SELECT mails.*, " +
+        String sqlGetAllMails = "SELECT mails.*, " +
                 "recipients.*, " +
                 "senders.id as sender_id, senders.firstName as sender_firstname, senders.lastName as sender_lastname, " +
                 "senders.email as sender_email, senders.password as sender_password, senders.role as sender_role " +
@@ -46,7 +46,7 @@ public class MailDaoImpl implements MailDao {
                 "LIMIT 20";
 
 
-        List<Mail> mails = jdbcTemplate.query(sql, new Object[]{user.getId(), user.getId(), user.getId()}, mailRowMapper);
+        List<Mail> mails = jdbcTemplate.query(sqlGetAllMails, new Object[]{user.getId(), user.getId(), user.getId()}, mailRowMapper);
         for (Mail mail : mails) {
             mail.setRecipients(fetchRecipientsForMail(mail.getId()));
         }
@@ -60,7 +60,7 @@ public class MailDaoImpl implements MailDao {
         searchString = "%" + searchString;
         searchString += "%";
 
-        String sql = "SELECT mails.*, " +
+        String sqlFilterMails = "SELECT mails.*, " +
                 "recipients.*, " +
                 "senders.id as sender_id, senders.firstName as sender_firstname, senders.lastName as sender_lastname, " +
                 "senders.email as sender_email, senders.password as sender_password, senders.role as sender_role " +
@@ -71,7 +71,7 @@ public class MailDaoImpl implements MailDao {
                 "AND (LOWER(mails.title) LIKE ? OR LOWER(mails.content) LIKE ?) " +
                 "LIMIT 20";
 
-        List<Mail> mails = jdbcTemplate.query(sql, new Object[]{user.getId(), user.getId(), user.getId(), searchString, searchString}, mailRowMapper);
+        List<Mail> mails = jdbcTemplate.query(sqlFilterMails, new Object[]{user.getId(), user.getId(), user.getId(), searchString, searchString}, mailRowMapper);
         for (Mail mail : mails) {
             mail.setRecipients(fetchRecipientsForMail(mail.getId()));
         }
@@ -82,21 +82,21 @@ public class MailDaoImpl implements MailDao {
 
     @Override
     public void deleteMail(User user, Mail mail) {
-        String sqlSender = "UPDATE mails SET senderdeleted = TRUE WHERE id = ? AND sender_id = ?";
-        String sqlRecipient = "UPDATE mail_recipients SET deleted = TRUE WHERE mail_id = ? AND recipient_id = ?";
+        String sqlDeleteMailIfUserIsSender = "UPDATE mails SET senderdeleted = TRUE WHERE id = ? AND sender_id = ?";
+        String sqlDeleteMailIfUserIsRecipient = "UPDATE mail_recipients SET deleted = TRUE WHERE mail_id = ? AND recipient_id = ?";
 
         if (mail.getSender().getId().equals(user.getId())) {
-            jdbcTemplate.update(sqlSender, mail.getId(), user.getId());
+            jdbcTemplate.update(sqlDeleteMailIfUserIsSender, mail.getId(), user.getId());
         }
 
         if (mail.getRecipients().contains(user)) {
-            jdbcTemplate.update(sqlRecipient, mail.getId(), user.getId());
+            jdbcTemplate.update(sqlDeleteMailIfUserIsRecipient, mail.getId(), user.getId());
         }
     }
 
     @Override
     public void sendMail(Mail mail) {
-        String sqlRecipient = "INSERT INTO mail_recipients (mail_id, recipient_id) VALUES (?, ?)";
+        String sqlSendMail = "INSERT INTO mail_recipients (mail_id, recipient_id) VALUES (?, ?)";
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("sender_id", mail.getSender().getId());
@@ -109,19 +109,13 @@ public class MailDaoImpl implements MailDao {
         Long mailId = mailInsert.executeAndReturnKey(parameters).longValue();
 
         for (User recipient : mail.getRecipients()) {
-            jdbcTemplate.update(sqlRecipient, mailId, recipient.getId());
+            jdbcTemplate.update(sqlSendMail, mailId, recipient.getId());
         }
-    }
-
-
-    @Override
-    public void replyToMail(Mail mail, Long mailId) {
-
     }
 
     @Override
     public Mail getById(Long id) {
-        String sql = "SELECT mails.*, " +
+        String sqlGetMailById = "SELECT mails.*, " +
                 "recipients.*, " +
                 "senders.id as sender_id, senders.firstName as sender_firstname, senders.lastName as sender_lastname, " +
                 "senders.email as sender_email, senders.password as sender_password, senders.role as sender_role " +
@@ -133,7 +127,7 @@ public class MailDaoImpl implements MailDao {
 
         try {
 
-            Mail mail = jdbcTemplate.queryForObject(sql, new Object[]{id}, mailRowMapper);
+            Mail mail = jdbcTemplate.queryForObject(sqlGetMailById, new Object[]{id}, mailRowMapper);
             mail.setRecipients(fetchRecipientsForMail(mail.getId()));
             return mail;
         } catch (Exception e) {
@@ -142,9 +136,9 @@ public class MailDaoImpl implements MailDao {
     }
 
     private List<User> fetchRecipientsForMail(Long mailId) {
-        String sql = "SELECT u.*, mr.* FROM users u " +
+        String sqlGetRecipientsForMail = "SELECT u.*, mr.* FROM users u " +
                 "JOIN mail_recipients mr ON u.id = mr.recipient_id " +
                 "WHERE mr.mail_id = ?";
-        return jdbcTemplate.query(sql, new Object[]{mailId}, userRowMapper);
+        return jdbcTemplate.query(sqlGetRecipientsForMail, new Object[]{mailId}, userRowMapper);
     }
 }
