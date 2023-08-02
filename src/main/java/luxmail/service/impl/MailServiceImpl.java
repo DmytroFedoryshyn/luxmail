@@ -36,11 +36,6 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void replyToMail(Mail mail, Long mailId) {
-        mailDao.replyToMail(mail, mailId);
-    }
-
-    @Override
     public Mail getById(Long id) {
         return mailDao.getById(id);
     }

@@ -20,15 +20,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAll() {
-        String sql = "SELECT * FROM users";
-        return jdbcTemplate.query(sql, new UserRowMapper());
+        String sqlGetAllUsers = "SELECT * FROM users";
+        return jdbcTemplate.query(sqlGetAllUsers, new UserRowMapper());
     }
 
     @Override
     public User getByLogin(String login) {
-        String sql = "SELECT * FROM users WHERE email = ?";
+        String sqlGetUserByLogin = "SELECT * FROM users WHERE email = ?";
         try {
-            return jdbcTemplate.queryForObject(sql, new Object[]{login}, new UserRowMapper());
+            return jdbcTemplate.queryForObject(sqlGetUserByLogin, new Object[]{login}, new UserRowMapper());
         } catch (Exception e) {
             throw new DataProcessingException("Could not retrieve user by login", e);
         }
@@ -36,10 +36,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getById(Long id) {
-        String sql = "SELECT * FROM users WHERE id = ?";
+        String sqlGetUserById = "SELECT * FROM users WHERE id = ?";
 
         try {
-            return jdbcTemplate.queryForObject(sql, new Object[]{id}, new UserRowMapper());
+            return jdbcTemplate.queryForObject(sqlGetUserById, new Object[]{id}, new UserRowMapper());
         } catch (Exception e) {
             throw new DataProcessingException("Could not retrieve user by ID", e);
         }
@@ -47,9 +47,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User update(User user) {
-        String sql = "UPDATE users SET firstname = ?, lastname = ?, email = ?, password = ?, role = ? WHERE id = ?";
+        String sqlUpdateUserById = "UPDATE users SET firstname = ?, lastname = ?, email = ?, password = ?, role = ? WHERE id = ?";
         try {
-            jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRole(), user.getId());
+            jdbcTemplate.update(sqlUpdateUserById, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getRole(), user.getId());
             return user;
         } catch (Exception e) {
             throw new DataProcessingException("Could not update user", e);
